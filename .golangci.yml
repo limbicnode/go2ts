@@ -1,0 +1,100 @@
+# .golangci.yml
+
+version: "2"
+
+run:
+  timeout: 10m
+  go: "1.23"
+  modules-download-mode: readonly
+  relative-path-mode: gomod
+  tests: true
+  allow-parallel-runners: true
+  concurrency: 4
+
+linters:
+  default: standard
+  enable:
+    - bodyclose
+    - copyloopvar
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - errorlint
+    - funlen
+    - gocheckcompilerdirectives
+    - gochecknoinits
+    # - goconst
+    - gocritic
+    - gocyclo
+    - godox
+    - mnd
+    - goprintffuncname
+    - gosec
+    - govet
+    - intrange
+    - ineffassign
+    - lll
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - revive
+    - staticcheck
+    - testifylint
+    - unconvert
+    - unparam
+    - unused
+    - whitespace
+  settings:
+    funlen:
+      lines: 100
+      statements: 50
+    depguard:
+      rules:
+        main:
+          list-mode: lax
+          files:
+            - "cmd/**/*.go"
+          allow:
+            - $gostd
+            - github.com/limbicnode/go2ts/pkg/go2ts
+        pkg:
+          list-mode: lax
+          files:
+            - "pkg/**/*.go"
+          allow:
+            - $gostd
+            - github.com/limbicnode/go2ts/internal/generator
+            - github.com/limbicnode/go2ts/internal/parser
+        internal:
+          list-mode: lax
+          files:
+            - "internal/**/*.go"
+          allow:
+            - $gostd
+            - github.com/limbicnode/go2ts/internal/parser
+  exclusions:
+    rules:
+      - path: '_test\.go'
+        linters:
+          - dupl
+          - errcheck
+          - gocyclo
+          - gosec
+          - funlen     
+          - depguard  
+          - intrange
+      - path-except: '_test\.go'
+        linters:
+          - staticcheck
+      - path: internal/hmac/
+        text: weak cryptographic primitive
+        linters:
+          - gosec
+      - text: 'SA9003:'
+        linters:
+          - staticcheck
+      - source: foo
+        linters:
+          - err113
