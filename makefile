@@ -17,15 +17,6 @@ help:
 	@echo "Available targets:"
 	@awk '/^##/ { printf "  %-15s %s\n", $$2, substr($$0, index($$0,$$3)) }' $(MAKEFILE_LIST)
 
-## imports        
-imports:
-	@echo "Organizing imports..."
-	@if command -v goimports >/dev/null 2>&1; then \
-		goimports -w .; \
-	else \
-		echo "⚠️  goimports not found, skipping..."; \
-	fi
-
 ## misspell      
 misspell:
 	@echo "Running misspell to fix common typos..."
@@ -68,7 +59,7 @@ lint:
 	@echo "✅ Linting completed"
 
 ## build        
-build: fmt imports
+build: fmt
 	@echo "Building $(APP_NAME) CLI version $(VERSION)..."
 	@mkdir -p $(BUILD_DIR)
 	@go build $(LDFLAGS) -o $(BUILD_DIR)/$(APP_NAME) $(CMD_DIR)
@@ -84,13 +75,13 @@ clean:
 	@echo "✅ Clean completed"
 
 ## test          
-test: fmt imports
+test: fmt
 	@echo "Running tests..."
 	@go test -v -race -coverprofile=coverage.txt ./...
 	@echo "✅ Tests completed"
 
 ## test-short    
-test-short: fmt imports
+test-short: fmt
 	@echo "Running tests (short mode)..."
 	@go test -v -short ./...
 	@echo "✅ Tests completed"
@@ -103,13 +94,13 @@ coverage: test
 	@echo "✅ Coverage report generated: coverage.html"
 
 ## benchmark     
-benchmark: fmt imports
+benchmark: fmt
 	@echo "Running benchmarks..."
 	@go test -bench=. -benchmem ./... > benchmark-results.txt
 	@echo "✅ Benchmarks completed: benchmark-results.txt"
 
 ## ci            
-ci: fmt imports vet lint misspell-check test coverage
+ci: fmt vet lint misspell-check test coverage
 	@echo "✅  All CI checks passed!"
 
 ## release        
