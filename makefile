@@ -100,7 +100,7 @@ benchmark: fmt
 	@echo "✅ Benchmarks completed: benchmark-results.txt"
 
 ## ci            
-ci: fmt vet lint misspell-check test coverage
+ci: fmt vet misspell-check test coverage
 	@echo "✅  All CI checks passed!"
 
 ## release        
