@@ -63,8 +63,7 @@ jobs:
       - name: Run CI
         run: make ci
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: ${{ matrix.os }},go-${{ matrix.go }}
+            token: ${{ secrets.CODECOV_TOKEN }}
