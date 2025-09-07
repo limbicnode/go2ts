@@ -55,7 +55,7 @@ fmt:
 ## lint         
 lint:
 	@echo "Running golangci-lint..."
-	@$(shell go env GOPATH)/bin/golangci-lint run --verbose --timeout=10m
+	@golangci-lint run --verbose --timeout=10m
 	@echo "✅ Linting completed"
 
 ## build        
