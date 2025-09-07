@@ -20,7 +20,6 @@ coverage.out
 coverage.txt
 coverage.html
 count.out
-test
 profile.out
 tmp.out
 benchmark-results.txt
