@@ -1,5 +1,6 @@
 # go2ts
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/limbicnode/go2ts.svg)](https://pkg.go.dev/github.com/limbicnode/go2ts)
 [![Build Status](https://github.com/limbicnode/go2ts/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/limbicnode/go2ts/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/limbicnode/go2ts/branch/main/graph/badge.svg)](https://codecov.io/gh/limbicnode/go2ts)
 [![Sourcegraph](https://sourcegraph.com/github.com/limbicnode/go2ts/-/badge.svg)](https://sourcegraph.com/github.com/limbicnode/go2ts?badge)
